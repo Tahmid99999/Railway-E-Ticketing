@@ -1,0 +1,105 @@
+﻿@model E_TICKET.Models.TrainSearchResult
+
+
+<!DOCTYPE html>
+<style>
+    .heading {
+        margin: auto;
+        width: 90%;
+        border: 3px solid ghostwhite;
+        padding: 10px;
+        background-color: #c1c1d7;
+        border-radius: 10px 20px 30px 40px/30px;
+    }
+
+    .frm {
+        margin: auto;
+        width: 80%;
+        border: 6px solid gray;
+        padding: 10px;
+        background-color: #b1b1cd;
+        border-top-left-radius: 15px;
+    }
+
+    .tbl {
+        margin: auto;
+        width: 90%;
+        border: 3px solid ghostwhite;
+        padding: 10px;
+        background-color: #8383af;
+        border-radius: 15px 15px 0 0;
+    }
+
+    
+    table tr:not(:first-child) {
+        cursor: pointer;
+        transition: all .25s ease-in-out;
+    }
+
+    table tr:not(:first-child):hover {
+        background-color: #ddd;
+    }
+    .st_no{
+        background-color:orangered;
+    }
+    .by_tck{
+        background-color:rebeccapurple;
+        width:100px;
+        padding:3px;
+    }
+</style>
+
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="heading">
+        <h1>Search Result</h1>
+        <h4>Don't forget to note your Ticket ID From Search Result</h4>
+        <p>Buy Ticket From Ticket Section.</p>
+    </div>
+    
+    <div class="tbl">
+        <h3>Select Your Ticket:</h3>
+        <table id="table" border="1">
+            <tr>
+                <th>Train No</th>
+                <th class="st_no">Seat No</th>
+                <th>Train Name</th>
+                <th class="st_no">Departure Station</th>
+                <th>Arrival Station</th>
+                <th class="st_no">Departure Time</th>
+                <th>Arrival Time</th>
+                <th class="st_no">Fare</th>
+                <th>Class</th>
+                <th class="st_no">Coach_Name</th>
+                <th>Ticket ID</th>
+
+            </tr>
+            @foreach (var item in TempData["tsr"] as List<E_TICKET.Models.TrainSearchResult>)
+            {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Train_No)</td>
+                <td class="st_no">@Html.DisplayFor(modelItem => item.Seat_No)</td>
+                <td>@Html.DisplayFor(modelItem => item.Train_Name)</td>
+                <td class="st_no">@Html.DisplayFor(modelItem => item.Departure_Station)</td>
+                <td>@Html.DisplayFor(modelItem => item.Arrival_Station)</td>
+                <td class="st_no">@Html.DisplayFor(modelItem => item.Departure_time)</td>
+                <td>@Html.DisplayFor(modelItem => item.Arrival_Time)</td>
+                <td class="st_no">@Html.DisplayFor(modelItem => item.Coach_fare)</td>
+                <td>@Html.DisplayFor(modelItem => item.Class)</td>
+                <td class="st_no">@Html.DisplayFor(modelItem => item.Coach_Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Ticket_ID)</td>
+            </tr>
+            }
+        </table>
+        <div class="by_tck">
+            <a href="/Home/BuyTicket">Buy Ticket</a>
+        </div>
+    </div>
+</body>
+</html>
+
